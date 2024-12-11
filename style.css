@@ -1,34 +1,44 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #05f0dc, #04bbfd);
-    display: flex;
-    justify-content: flex-start; /* Aligne les cartes à gauche */
-    align-items: center; /* Centre les cartes verticalement */
-    flex-direction: row; /* Affiche les cartes horizontalement */
-    flex-wrap: wrap; /* Permet aux cartes de se répartir sur plusieurs lignes si nécessaire */
-    height: 100vh;
-    padding: 20px;
-  }
-  
-  .weather-card {
-    background-color: rgba(255, 255, 255, 0);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 200px;
-    margin: 10px; /* Espace autour de chaque carte */
-  }
-  
-  .weather-icon {
-    width: 100px;
-    height: auto;
-  }
-  
-  .temperature {
-    font-size: 1.5rem;
-    margin-top: 10px;
-    color: #ffffff;
-  }
-  
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #05f0dc, #04bbfd);
+  display: flex;
+  justify-content: flex-start; /* Aligne les cartes à gauche */
+  align-items: center; /* Centre les cartes verticalement */
+  flex-direction: row; /* Affiche les cartes horizontalement */
+  flex-wrap: wrap; /* Permet aux cartes de se répartir sur plusieurs lignes si nécessaire */
+  height: 100vh;
+  padding: 20px;
+}
+
+.weather-card {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 150px; /* Largeur fixe pour toutes les cartes */
+  height: 150px; /* Hauteur fixe pour toutes les cartes */
+  margin: 10px; /* Espace autour de chaque carte */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre le contenu verticalement */
+  align-items: center; /* Centre le contenu horizontalement */
+}
+
+.weather-icon {
+  width: 60px; /* Largeur fixe pour l'image */
+  height: 60px; /* Hauteur fixe pour l'image */
+  object-fit: contain; /* Conserve le ratio de l'image */
+}
+
+.temperature {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.date {
+  font-size: medium;
+  color:#ffffff
+}

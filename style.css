@@ -3,42 +3,54 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, #05f0dc, #04bbfd);
   display: flex;
-  justify-content: flex-start; /* Aligne les cartes à gauche */
-  align-items: center; /* Centre les cartes verticalement */
-  flex-direction: row; /* Affiche les cartes horizontalement */
-  flex-wrap: wrap; /* Permet aux cartes de se répartir sur plusieurs lignes si nécessaire */
-  height: 100vh;
+  flex-direction: column; /* Organisation verticale */
+  align-items: center; /* Centre tout horizontalement */
   padding: 20px;
 }
 
-.weather-card {
-  background-color: rgba(255, 255, 255, 0);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 150px; /* Largeur fixe pour toutes les cartes */
-  height: 150px; /* Hauteur fixe pour toutes les cartes */
-  margin: 10px; /* Espace autour de chaque carte */
+.container {
+  width: 100%; /* Prend toute la largeur */
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centre le contenu verticalement */
-  align-items: center; /* Centre le contenu horizontalement */
+  flex-direction: column; /* Organisation en colonne */
+  align-items: center; /* Centre les enfants horizontalement */
 }
 
-.weather-icon {
-  width: 60px; /* Largeur fixe pour l'image */
-  height: 60px; /* Hauteur fixe pour l'image */
-  object-fit: contain; /* Conserve le ratio de l'image */
+/* Section météo du jour */
+.today {
+  font-size: 1.5em;
+  text-align: center; /* Centre le contenu horizontalement */
+  margin-bottom: 20px; /* Espace entre le jour actuel et les prévisions */
 }
 
-.temperature {
-  font-size: 1.5rem;
-  margin-top: 10px;
-  color: #ffffff;
+.today .daily-icon {
+  width: 150px; /* Taille spécifique pour l'icône du jour */
+  height: auto;
+  margin-bottom: 10px;
 }
 
-.date {
-  font-size: medium;
-  color:#ffffff
+/* Section des prévisions hebdomadaires */
+.forecast {
+  display: flex;
+  justify-content: flex-start; /* Aligne les cartes à gauche */
+  flex-wrap: wrap; /* Permet aux cartes de passer sur plusieurs lignes */
+  gap: 15px; /* Ajoute un espace entre les cartes */
+}
+
+.forecast .weather-card {
+  width: 140px; /* Taille fixe pour les cartes */
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forecast .weather-card .weather-icon {
+  width: 50px; /* Taille spécifique pour les icônes des prévisions */
+  height: auto;
+}
+
+p {
+  color: #fff;
 }

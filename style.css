@@ -1,56 +1,42 @@
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, #05f0dc, #04bbfd);
-  display: flex;
-  flex-direction: column; /* Organisation verticale */
-  align-items: center; /* Centre tout horizontalement */
+  margin: 0;
   padding: 20px;
+  color: #ffffff;
 }
 
-.container {
-  width: 100%; /* Prend toute la largeur */
+/* Style général des cartes */
+.forecast-card {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+}
+
+/* Container horaire */
+.hourly-container {
   display: flex;
-  flex-direction: column; /* Organisation en colonne */
-  align-items: center; /* Centre les enfants horizontalement */
+  flex-wrap: wrap;
 }
 
-/* Section météo du jour */
-.today {
-  font-size: 1.5em;
-  text-align: center; /* Centre le contenu horizontalement */
-  margin-bottom: 20px; /* Espace entre le jour actuel et les prévisions */
-}
-
-.today .daily-icon {
-  width: 150px; /* Taille spécifique pour l'icône du jour */
-  height: auto;
-  margin-bottom: 10px;
-}
-
-/* Section des prévisions hebdomadaires */
-.forecast {
-  display: flex;
-  justify-content: flex-start; /* Aligne les cartes à gauche */
-  flex-wrap: wrap; /* Permet aux cartes de passer sur plusieurs lignes */
-  gap: 15px; /* Ajoute un espace entre les cartes */
-}
-
-.forecast .weather-card {
-  width: 140px; /* Taille fixe pour les cartes */
-  height: 140px;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 10px;
+.forecast-item {
+  margin: 10px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.forecast .weather-card .weather-icon {
-  width: 50px; /* Taille spécifique pour les icônes des prévisions */
-  height: auto;
+/* Container quotidien */
+.daily-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-p {
-  color: #fff;
+.forecast-item {
+  margin: 10px;
+  text-align: center;
 }

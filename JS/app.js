@@ -4,7 +4,7 @@ import { hourlyData, weeklyData } from './data.js';
 
 const currentWeather = new CurrentWeather(
     'Paris, France',
-    '../asset/sun.png',
+    '../asset/storm.png',
     28,
     'Sunny'
 );

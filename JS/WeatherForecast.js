@@ -9,6 +9,13 @@ export class WeatherForecast {
         const card = document.createElement('div');
         card.classList.add('forecast-card'); // Classe générique pour la carte
 
+        // Ajouter le titre
+        const title = document.createElement('h2');
+        title.textContent = this.type === 'hourly' ? 'Heure par heure' : 'Prochains jours';
+        title.style.textAlign = 'center'; // Optionnel : centrer le texte
+        card.appendChild(title);
+
+        // Conteneur pour les données
         const container = document.createElement('div');
         container.classList.add(this.type === 'hourly' ? 'hourly-container' : 'daily-container');
 

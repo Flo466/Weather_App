@@ -15,13 +15,21 @@ body {
   border-radius: 12px;
   background-color: rgba(74, 77, 162, 0.5);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  max-height: 400px; /* Hauteur maximale */
-  overflow: hidden; /* Empêche les débordements globaux */
+  max-height: 400px;
+}
+
+/* Nouveau conteneur parent pour aligner les cartes côte à côte */
+.cards-container {
+  display: flex; /* Alignement horizontal */
+  flex-wrap: wrap; /* Passe à la ligne si nécessaire */
+  justify-content: center; /* Centre les cartes horizontalement */
+  gap: 20px; /* Espace entre les cartes */
+  padding: 20px;
 }
 
 .weather-icon {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
 }
 
 /* Containers pour les cartes avec défilement horizontal */
@@ -32,8 +40,8 @@ body {
   flex-wrap: nowrap; /* Désactive le retour à la ligne */
   overflow-x: auto; /* Active le défilement horizontal */
   overflow-y: hidden; /* Désactive le défilement vertical */
-  gap: 10px; /* Espace entre les éléments */
   padding: 10px 0; /* Marges internes */
+  margin: 15px;
 
   /* Masquer la barre de défilement dans les navigateurs modernes */
   scrollbar-width: none; /* Firefox */
@@ -65,8 +73,8 @@ body {
 }
 
 .current-icon {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   margin: 10px 0;
 }
 
@@ -85,6 +93,18 @@ body {
   .forecast-card {
     margin: 10px;
     padding: 15px;
+  }
+
+  .forecast-container {
+    display: flex; /* Aligne les conteneurs horizontalement */
+    justify-content: space-between; /* Espace entre les conteneurs */
+    gap: 20px; /* Espacement entre les conteneurs */
+  }
+
+
+  .hourly-container,
+.daily-container {
+    margin: 5px;
   }
 
   /* Icônes plus petites pour économiser de l'espace */

@@ -8,12 +8,12 @@ const currentWeather = new CurrentWeather(
     28,
     'Sunny'
 );
-app.appendChild(currentWeather.create());
 
 // Créer les cartes avec les données météo
 const hourlyForecast = new WeatherForecast(hourlyData, 'hourly');
 const dailyForecast = new WeatherForecast(weeklyData, 'daily');
 
 // Ajouter les cartes dans le DOM
-document.getElementById('app').appendChild(hourlyForecast.create());
-document.getElementById('app').appendChild(dailyForecast.create());
+app.appendChild(currentWeather.create());
+document.getElementById('hourly').appendChild(hourlyForecast.create());
+document.getElementById('daily').appendChild(dailyForecast.create());

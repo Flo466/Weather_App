@@ -28,7 +28,7 @@ body {
 .hourly-container,
 .daily-container {
   display: flex; /* Alignement horizontal */
-  justify-content: flex-start; /* Aligne les éléments à gauche */
+  justify-content: space-between; /* Aligne les éléments à gauche */
   flex-wrap: nowrap; /* Désactive le retour à la ligne */
   overflow-x: auto; /* Active le défilement horizontal */
   overflow-y: hidden; /* Désactive le défilement vertical */

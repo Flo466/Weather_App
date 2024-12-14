@@ -11,11 +11,11 @@ body {
 
 .forecast-card {
   margin: 20px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 12px;
   background-color: rgba(74, 77, 162, 0.5);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  max-height: 400px;
+  max-height: 200px;
 }
 
 /* Nouveau conteneur parent pour aligner les cartes côte à côte */
@@ -23,13 +23,11 @@ body {
   display: flex; /* Alignement horizontal */
   flex-wrap: wrap; /* Passe à la ligne si nécessaire */
   justify-content: center; /* Centre les cartes horizontalement */
-  gap: 20px; /* Espace entre les cartes */
-  padding: 20px;
 }
 
 .weather-icon {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 
 /* Containers pour les cartes avec défilement horizontal */
@@ -41,7 +39,6 @@ body {
   overflow-x: auto; /* Active le défilement horizontal */
   overflow-y: hidden; /* Désactive le défilement vertical */
   padding: 10px 0; /* Marges internes */
-  margin: 15px;
 
   /* Masquer la barre de défilement dans les navigateurs modernes */
   scrollbar-width: none; /* Firefox */
@@ -54,8 +51,7 @@ body {
 }
 
 .forecast-card h2 {
-  font-size: 1.7rem;
-  margin-bottom: 10px;
+  font-size: 1.2rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -71,7 +67,6 @@ body {
 .current-weather {
   text-align: center;
   padding: 10px;
-  margin-bottom: 20px;
 }
 
 .current-location {
@@ -80,8 +75,8 @@ body {
 }
 
 .current-icon {
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
   margin: 10px 0;
 }
 
@@ -99,7 +94,8 @@ body {
   /* Ajustement des cartes au complet */
   .forecast-card {
     margin: 10px;
-    padding: 15px;
+    padding: 10px;
+    max-height: 180px;
   }
 
   .forecast-container {

@@ -4,9 +4,9 @@ import { hourlyData, weeklyData } from './data.js';
 
 const currentWeather = new CurrentWeather(
     'Paris, France',
-    '../asset/storm.png',
+    '../asset/rain.png',
     28,
-    'Sunny'
+    'Rain'
 );
 
 // Créer les cartes avec les données météo

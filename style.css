@@ -141,43 +141,63 @@ body {
 
 /* Ajustement des cartes */
 .weather-detail-card {
-  background-color: rgba(74, 77, 162, 0.5);
+  background-color: rgb(63, 61, 166, 0.6);
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   width: 100%; /* Occupe toute la largeur de la colonne */
-  height: 200px; /* Fixe une hauteur légèrement réduite */
+  height: 200px; /* Hauteur fixe */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto; /* Centre la carte */
+  flex-direction: column; /* Organisation verticale */
+  align-items: flex-start; /* Texte aligné à gauche */
+  justify-content: start; /* Texte en haut */
+  padding: 10px;
+  margin: 0 auto;
+  position: relative; /* Pour positionner l'icône en bas */
   color: #fff;
 }
 
+/* Conteneur texte */
+.detail-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alignement du texte à gauche */
+}
+
+/* Icône alignée en bas à droite */
 .detail-icon {
-  width: 30%; /* Taille de l'icône légèrement plus grande */
+  width: 120px; /* Taille fixe de l'icône */
   height: auto;
   object-fit: contain;
+  position: absolute;
+  bottom: 10px; /* Positionnement en bas */
+  right: 10px; /* Positionnement à droite */
 }
 
 .weather-detail-title {
-  font-size: 1rem; /* Taille du texte pour les labels */
+  font-size: 1rem;
   margin: 0;
 }
 
 .weather-detail-value {
-  font-size: 0.9rem; /* Taille des valeurs */
+  font-size: 0.9rem;
   margin-top: 5px;
 }
 
 /* Media query pour petits écrans */
 @media (max-width: 576px) {
   .col-6 {
-    flex: 0 0 50%; /* Garde 2 cartes par ligne */
+    flex: 0 0 50%; /* 2 cartes par ligne sur petits écrans */
     max-width: 50%;
   }
 
   .weather-detail-card {
-    height: 150px; /* Réduit légèrement la hauteur */
+    height: 150px; /* Hauteur réduite pour mobile */
+  }
+
+  .detail-icon {
+    width: 80px;
+    height: auto;
+    bottom: 5px; /* Ajuste la position pour mobile */
+    right: 5px;
   }
 }

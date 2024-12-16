@@ -5,7 +5,7 @@ export const hourlyData = [
     { time: '19:00', icon: 'asset/sun.png', label: '19:00', temperature: 28 },
     { time: '20:00', icon: 'asset/sun.png', label: '20:00', temperature: 28 },
     { time: '21:00', icon: 'asset/cloud.png', label: '21:00', temperature: 28 },
-    { time: '22:00', icon: 'asset/night.png', label: '22:00', temperature: 28 },
+    { time: '22:00', icon: 'asset/moon.png', label: '22:00', temperature: 28 },
 ];
 
 export const weeklyData = [

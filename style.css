@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #0da8a0, #33bae7);
+  background: linear-gradient(to bottom, #052771, #e575ed);
   background-attachment: fixed;
   background-size: cover;
   font-family: Arial, sans-serif;
@@ -13,9 +13,9 @@ body {
   margin: 20px;
   padding: 10px;
   border-radius: 12px;
-  background-color: rgba(70, 68, 176, 0.5);
+  background-color: rgb(63, 61, 166, 0.6);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  max-height: 200px;
+  height: 200px;
 }
 
 .weather-icon {
@@ -138,46 +138,46 @@ body {
     height: 50px;
   }
 }
+
+/* Ajustement des cartes */
 .weather-detail-card {
   background-color: rgba(74, 77, 162, 0.5);
   border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  max-width: 100%; /* S'adapte à la largeur de la colonne */
-  height: 200px; /* Fixe la hauteur pour garder un aspect carré */
-  position: relative;
+  width: 100%; /* Occupe toute la largeur de la colonne */
+  height: 200px; /* Fixe une hauteur légèrement réduite */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Centre la carte */
+  color: #fff;
 }
 
-.detail-text-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  color: white;
-  text-align: center;
+.detail-icon {
+  width: 30%; /* Taille de l'icône légèrement plus grande */
+  height: auto;
+  object-fit: contain;
 }
 
 .weather-detail-title {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Taille du texte pour les labels */
   margin: 0;
 }
 
 .weather-detail-value {
-  font-size: 1rem;
-  margin: 5px 0;
+  font-size: 0.9rem; /* Taille des valeurs */
+  margin-top: 5px;
 }
 
-.detail-icon {
-  width: 50%; /* Taille de l'icône, ajustable selon la taille voulue */
-  height: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto; /* Centre l'image dans la carte */
-}
+/* Media query pour petits écrans */
+@media (max-width: 576px) {
+  .col-6 {
+    flex: 0 0 50%; /* Garde 2 cartes par ligne */
+    max-width: 50%;
+  }
 
-/* Ajout d'une bordure et d'un espacement pour rendre la mise en page plus propre */
-.col-lg-4, .col-md-6, .col-12 {
-  padding: 0 15px; /* Espacement horizontal */
+  .weather-detail-card {
+    height: 150px; /* Réduit légèrement la hauteur */
+  }
 }
-

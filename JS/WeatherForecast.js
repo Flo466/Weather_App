@@ -6,6 +6,9 @@ export class WeatherForecast {
 
     // Méthode pour créer la carte météo
     create() {
+        const col = document.createElement('div');
+        col.classList.add('col-lg-6', 'col-12', 'mb-4');
+
         const card = document.createElement('div');
         card.classList.add('forecast-card'); // Classe générique pour la carte
 
@@ -45,6 +48,7 @@ export class WeatherForecast {
         });
 
         card.appendChild(container);
-        return card;
+        col.appendChild(card);
+        return col;
     }
 }

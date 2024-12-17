@@ -19,10 +19,10 @@ weatherDetails.forEach(detail => {
     detailsContainer.appendChild(card.create());
 });
 // Créer les cartes avec les données météo
-const hourlyForecast = new WeatherForecast(hourlyData, 'hourly');
-const dailyForecast = new WeatherForecast(weeklyData, 'daily');
+const hourlyForecast = new WeatherForecast(hourlyData, 'forecast');
+const dailyForecast = new WeatherForecast(weeklyData, 'forecast');
 
 // Ajouter les cartes dans le DOM
 current.appendChild(currentWeather.create());
-document.getElementById('hourly').appendChild(hourlyForecast.create());
-document.getElementById('daily').appendChild(dailyForecast.create());
+document.getElementById('forecast').appendChild(hourlyForecast.create());
+document.getElementById('forecast').appendChild(dailyForecast.create());

@@ -10,7 +10,7 @@ export class WeatherDetail {
         col.classList.add('col-lg-4', 'col-md-6', 'col-6', 'mb-3'); // Classes Bootstrap pour la mise en page
 
         const card = document.createElement('div');
-        card.classList.add('card', 'weather-detail-card'); // Classe personnalisée pour la carte météo
+        card.classList.add('weather-detail-card'); // Classe personnalisée pour la carte météo
 
         // Conteneur pour le texte (au-dessus de l'image)
         const textContainer = document.createElement('div');

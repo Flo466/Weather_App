@@ -45,7 +45,6 @@ body {
 
 .forecast-card h2 {
   font-size: 1.2rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -59,18 +58,16 @@ body {
 /* Section météo actuelle */
 .current-weather {
   text-align: center;
-  padding: 10px;
 }
 
 .current-location {
   font-size: 2rem;
-  margin-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .current-icon {
   width: 170px;
   height: 170px;
-  margin: 10px 0;
 }
 
 .current-temperature {
@@ -88,19 +85,14 @@ body {
   .forecast-card {
     margin: 10px;
     padding: 10px;
-    max-height: 180px;
+    max-height: 160px;
+    font-size: smaller;
   }
 
   .forecast-container {
     display: flex; /* Aligne les conteneurs horizontalement */
     justify-content: space-between; /* Espace entre les conteneurs */
-    gap: 20px; /* Espacement entre les conteneurs */
-  }
-
-
-  .hourly-container,
-.daily-container {
-    margin: 5px;
+    gap: 10px; /* Espacement entre les conteneurs */
   }
 
   /* Icônes plus petites pour économiser de l'espace */
@@ -111,12 +103,12 @@ body {
 
   /* Texte plus petit pour s'adapter aux petits écrans */
   .current-location {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .current-icon {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
   }
 
   .current-temperature {
@@ -128,9 +120,8 @@ body {
   }
 
   .forecast-card h2 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   }
 
   .weather-detail-card {
@@ -195,7 +186,7 @@ body {
   }
 
   .detail-icon {
-    width: 80px;
+    width: 70px;
     height: auto;
     bottom: 5px; /* Ajuste la position pour mobile */
     right: 5px;

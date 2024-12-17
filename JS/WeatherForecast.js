@@ -12,7 +12,6 @@ export class WeatherForecast {
         // Ajouter le titre
         const title = document.createElement('h2');
         title.textContent = this.type === 'hourly' ? 'Heure par heure' : 'Prochains jours';
-        title.style.textAlign = 'center'; // Optionnel : centrer le texte
         card.appendChild(title);
 
         // Conteneur pour les données

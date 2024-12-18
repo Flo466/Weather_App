@@ -26,3 +26,12 @@ const dailyForecast = new WeatherForecast(weeklyData, 'forecast');
 current.appendChild(currentWeather.create());
 document.getElementById('forecast').appendChild(hourlyForecast.create());
 document.getElementById('forecast').appendChild(dailyForecast.create());
+
+const search=document.querySelector(".search");
+const btn=document.querySelector(".btn");
+const input=document.querySelector(".input");
+
+btn.addEventListener("click",()=>{
+    search.classList.toggle("active");//toggle metode add and remove in the same time class
+    input.focus();//i put focus in my input
+})

@@ -219,15 +219,21 @@ input:focus{
 }
 
 @media (max-width: 768px) {
-  .search .input{
+  .search .input {
     height:20px;
     width:200px;
+  }
+  .input::placeholder {
+    font-size: small;
   }
 }
 
 @media (max-width: 536px) {
-  .search .input{
+  .search .input {
     height:15px;
     width:130px;
+  }
+  .input::placeholder {
+    font-size: small;
   }
 }

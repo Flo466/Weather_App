@@ -9,6 +9,9 @@ body {
   color: #fff;
 }
 
+/* --------------------------------------------------------------------------------------------------------------------------- */
+/* FORECATS CARDS */
+
 .forecast-card {
   margin: 20px;
   padding: 10px;
@@ -55,7 +58,9 @@ body {
   width: 100px; /* Largeur fixe pour chaque élément */
 }
 
-/* Section météo actuelle */
+/* --------------------------------------------------------------------------------------------------------------------------- */
+/* CURRENT WEATHER */
+
 .current-weather {
   text-align: center;
 }
@@ -79,9 +84,8 @@ body {
   font-size: 1.2rem;
 }
 
-/* Media Query pour les petits écrans */
+/* FORECAST AND CURRENT WEATHER MEDIA QUERY */
 @media (max-width: 768px) {
-  /* Ajustement des cartes au complet */
   .forecast-card {
     margin: 10px;
     padding: 10px;
@@ -123,12 +127,10 @@ body {
     font-size: 1rem;
     margin-bottom: 10px;
   }
-
-  .weather-detail-card {
-    width: 50px;
-    height: 50px;
-  }
 }
+
+/* --------------------------------------------------------------------------------------------------------------------------- */
+/* WEATHER DETAILS */
 
 /* Ajustement des cartes */
 .weather-detail-card {
@@ -174,7 +176,7 @@ body {
   margin-top: 5px;
 }
 
-/* Media query pour petits écrans */
+/* WEATHER DETAILS MEDIA QUERY */
 @media (max-width: 576px) {
   .col-6 {
     flex: 0 0 50%; /* 2 cartes par ligne sur petits écrans */
@@ -191,7 +193,15 @@ body {
     bottom: 5px; /* Ajuste la position pour mobile */
     right: 5px;
   }
+
+  .weather-detail-card {
+    width: 50px;
+    height: 50px;
+  }
 }
+
+/* --------------------------------------------------------------------------------------------------------------------------- */
+/* SEARCH BAR */
 
 .search{
   position:relative;

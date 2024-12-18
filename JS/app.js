@@ -18,9 +18,10 @@ weatherDetails.forEach(detail => {
     const card = new WeatherDetail(detail.iconSrc, detail.label, detail.value);
     detailsContainer.appendChild(card.create());
 });
+
 // Créer les cartes avec les données météo
-const hourlyForecast = new WeatherForecast(hourlyData, 'forecast');
-const dailyForecast = new WeatherForecast(weeklyData, 'forecast');
+const hourlyForecast = new WeatherForecast(hourlyData, 'hourly');
+const dailyForecast = new WeatherForecast(weeklyData, 'daily');
 
 // Ajouter les cartes dans le DOM
 current.appendChild(currentWeather.create());

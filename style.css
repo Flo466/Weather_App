@@ -9,10 +9,10 @@ body {
 }
 
 /* --------------------------------------------------------------------------------------------------------------------------- */
-/* FORECATS */
+/* FORECAST */
 
 .forecast-card {
-  margin: 20px;
+  margin: 5px;
   padding: 10px;
   border-radius: 12px;
   background-color: rgb(63, 61, 166, 0.6);
@@ -25,7 +25,6 @@ body {
   height: 60px;
 }
 
-/* Containers pour les cartes avec défilement horizontal */
 .hourly-container,
 .daily-container {
   display: flex; /* Alignement horizontal */
@@ -86,7 +85,6 @@ body {
 /* FORECAST AND CURRENT WEATHER MEDIA QUERY */
 @media (max-width: 768px) {
   .forecast-card {
-    margin: 10px;
     padding: 10px;
     max-height: 160px;
     font-size: smaller;
@@ -157,7 +155,7 @@ body {
 
 /* Icône alignée en bas à droite */
 .detail-icon {
-  width: 120px; /* Taille fixe de l'icône */
+  width: 70px; /* Taille fixe de l'icône */
   height: auto;
   object-fit: contain;
   position: absolute;
@@ -166,12 +164,12 @@ body {
 }
 
 .weather-detail-title {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0;
 }
 
 .weather-detail-value {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-top: 5px;
 }
 

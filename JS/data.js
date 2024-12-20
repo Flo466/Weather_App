@@ -20,10 +20,10 @@ export const weeklyData = [
 
 // Détails météo
 export const weatherDetails = [
-    { iconSrc: 'asset/sun.png', label: 'Index UV', value: '7' },
-    { iconSrc: 'asset/temp.png', label: 'Ressenti', value: '32°C' },
-    { iconSrc: 'asset/hydro.png', label: 'Humidité', value: '60%' },
-    { iconSrc: 'asset/wind.png', label: 'Vent', value: '15 km/h' },
+    { iconSrc: 'asset/sun.png', label: 'Max / Min', value: '32 / 20' },
     { iconSrc: 'asset/sun.png', label: 'Coucher du soleil', value: '18:45' },
-    { iconSrc: 'asset/sun.png', label: 'Pression', value: '1015 hPa' }
+    { iconSrc: 'asset/sun.png', label: "Ensoleillement", value: '16h' },
+    { iconSrc: 'asset/sun.png', label: 'Index UV', value: '7' },
+    { iconSrc: 'asset/sun.png', label: 'Temps de pluie', value: '0' },
+    { iconSrc: 'asset/sun.png', label: 'Vent', value: '15 km/h' },
 ];

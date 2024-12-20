@@ -7,7 +7,7 @@ export class WeatherDetail {
 
     create() {
         const col = document.createElement('div');
-        col.classList.add('col-lg-4' ,'col-xl-2', 'col-6','mb-2');
+        col.classList.add('col-lg-4', 'col-md-4' ,'col-xl-2', 'col-6','mb-2');
         const card = document.createElement('div');
         card.classList.add('weather-detail-card'); // Classe personnalisée pour la carte météo
 

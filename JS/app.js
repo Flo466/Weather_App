@@ -38,7 +38,7 @@ function initAutocomplete() {
         return;
     }
 
-    input.addEventListener('input', function() {
+    input.addEventListener('input', function () {
         const query = input.value.trim();
         console.log(`Recherche : ${query}`);
         if (query) {
@@ -51,3 +51,4 @@ function initAutocomplete() {
 
 // Initialisation de l’autocomplétion
 window.onload = initAutocomplete;
+

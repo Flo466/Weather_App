@@ -3,32 +3,28 @@ export function ajaxRequest({ url, method = 'GET', data = null, headers = {} }) 
         const xhr = new XMLHttpRequest();
         xhr.open(method, url, true);
 
+        // Appliquer les en-têtes, s'ils existent
         Object.keys(headers).forEach(key => {
             xhr.setRequestHeader(key, headers[key]);
         });
-        
+
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) { // La requête est terminée
+            if (xhr.readyState === 4) { // Requête terminée
                 if (xhr.status >= 200 && xhr.status < 300) {
                     try {
-                        const response = JSON.parse(xhr.responseText); // Parse JSON si possible
+                        const response = JSON.parse(xhr.responseText); // Essayer de parser JSON
                         resolve(response);
-                    } catch (error) {
-                        resolve(xhr.responseText); // Retourner le texte brut si JSON invalide
+                    } catch (e) {
+                        resolve(xhr.responseText); // Retourner du texte brut si JSON invalide
                     }
                 } else {
-                    reject(new Error(`Erreur: ${xhr.status} ${xhr.statusText}`));
+                    reject(new Error(`Erreur HTTP ${xhr.status}: ${xhr.statusText}`));
                 }
             }
         };
 
-        xhr.timeout = 10000; // 10 secondes
-        xhr.ontimeout = function () {
-            reject(new Error("La requête a expiré."));
-        };
-
         xhr.onerror = function () {
-            reject(new Error("Erreur réseau"));
+            reject(new Error('Erreur réseau'));
         };
 
         if (method === 'POST' && data) {
@@ -36,6 +32,6 @@ export function ajaxRequest({ url, method = 'GET', data = null, headers = {} }) 
             xhr.send(JSON.stringify(data));
         } else {
             xhr.send();
-        }        
-    })
+        }
+    });
 }

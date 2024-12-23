@@ -2,7 +2,8 @@ import { WeatherForecast } from './WeatherForecast.js';
 import { CurrentWeather } from './CurrentWeather.js';
 import { WeatherDetail } from './WeatherDetail.js';
 import { hourlyData, weeklyData, weatherDetails } from './data.js';
-import { getCitySuggestions } from './geocoding.js';
+import { debounce } from './utils.js'; // Import de debounce
+import { getCitySuggestions } from './geocoding.js'; // Import de getCitySuggestions
 
 const currentWeather = new CurrentWeather(
     'Paris, France',
@@ -25,10 +26,11 @@ const hourlyForecast = new WeatherForecast(hourlyData, 'hourly');
 const dailyForecast = new WeatherForecast(weeklyData, 'daily');
 
 // Ajouter les cartes dans le DOM
-current.appendChild(currentWeather.create());
+document.getElementById('current').appendChild(currentWeather.create());
 document.getElementById('forecast').appendChild(hourlyForecast.create());
 document.getElementById('forecast').appendChild(dailyForecast.create());
 
+// Initialisation de l’autocomplétion avec debounce
 function initAutocomplete() {
     const input = document.getElementById('search');
     const suggestionsBox = document.getElementById('suggestions');
@@ -38,17 +40,48 @@ function initAutocomplete() {
         return;
     }
 
-    input.addEventListener('input', function () {
+    input.addEventListener('input', debounce(function () {
         const query = input.value.trim();
         console.log(`Recherche : ${query}`);
-        if (query) {
-            getCitySuggestions(query); // Appeler la fonction AJAX pour récupérer les suggestions
+        if (query.length > 2) {
+            getCitySuggestions(query).then(suggestions => {
+                suggestionsBox.innerHTML = ''; // Vider les suggestions existantes
+                if (suggestions.length > 0) {
+                    suggestionsBox.style.display = 'block';
+                    suggestions.forEach(suggestion => {
+                        const item = document.createElement('div');
+                        item.classList.add('suggestion-item');
+                        item.innerText = suggestion.display_name;
+                        item.addEventListener('click', () => {
+                            input.value = suggestion.display_name;
+                            suggestionsBox.style.display = 'none';
+                            handleCitySelection(suggestion);
+                        });
+                        suggestionsBox.appendChild(item);
+                    });
+                } else {
+                    suggestionsBox.style.display = 'none';
+                }
+            });
         } else {
-            suggestionsBox.style.display = 'none'; // Cacher les suggestions si vide
+            suggestionsBox.style.display = 'none';
         }
-    });
+    }, 300)); // 300ms de délai avant d'exécuter
 }
+
+// Fonction de gestion de la sélection de la ville
+function handleCitySelection(suggestion) {
+    console.log(`Ville sélectionnée : ${suggestion.display_name}`);
+    // Ajouter toute logique nécessaire pour traiter la ville sélectionnée
+}
+
+// Fermer les suggestions lorsqu'on clique en dehors
+document.addEventListener('click', (e) => {
+    const suggestionsBox = document.getElementById('suggestions');
+    if (suggestionsBox && !suggestionsBox.contains(e.target)) {
+        suggestionsBox.style.display = 'none';
+    }
+});
 
 // Initialisation de l’autocomplétion
 window.onload = initAutocomplete;
-

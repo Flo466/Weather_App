@@ -72,7 +72,6 @@ function initAutocomplete() {
 // Fonction de gestion de la sélection de la ville
 function handleCitySelection(suggestion) {
     console.log(`Ville sélectionnée : ${suggestion.display_name}`);
-    // Ajouter toute logique nécessaire pour traiter la ville sélectionnée
 }
 
 // Fermer les suggestions lorsqu'on clique en dehors

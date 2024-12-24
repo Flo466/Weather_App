@@ -243,19 +243,25 @@ input:focus{
 @media (max-width: 768px) {
   .search .input {
     height:20px;
-    width:200px;
+    width: 200px;
   }
   .input::placeholder {
-    font-size: small;
+    font-size: smaller;
+  }
+  #suggestions {
+    max-width: 130px;
   }
 }
 
 @media (max-width: 536px) {
   .search .input {
     height:15px;
-    width:130px;
+    width:120px;
   }
   .input::placeholder {
-    font-size: small;
+    font-size: smaller;
+  }
+  #suggestions {
+    max-width: 120px;
   }
 }

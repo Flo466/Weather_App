@@ -4,6 +4,8 @@ import { WeatherDetail } from './WeatherDetail.js';
 import { hourlyData, weeklyData, weatherDetails } from './data.js';
 import { debounce } from './utils.js'; // Import de debounce
 import { getCitySuggestions } from './geocoding.js'; // Import de getCitySuggestions
+import { getForecast } from './forecast.js';
+
 
 const currentWeather = new CurrentWeather(
     'Paris, France',
@@ -72,7 +74,7 @@ function initAutocomplete() {
 // Fonction de gestion de la sélection de la ville
 function handleCitySelection(suggestion) {
     console.log(`Ville sélectionnée : ${suggestion.display_name}`);
-    // Ajouter toute logique nécessaire pour traiter la ville sélectionnée
+
 }
 
 // Fermer les suggestions lorsqu'on clique en dehors

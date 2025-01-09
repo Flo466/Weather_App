@@ -6,3 +6,9 @@ export function debounce(func, delay) {
         timer = setTimeout(() => func.apply(this, args), delay);
     };
 }
+
+export function getIconPath(iconName) {
+    const basePath = "asset/weather-icons/";
+    const iconPath = `${basePath}${iconName}.svg`;
+    return iconPath;
+}

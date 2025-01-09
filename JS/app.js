@@ -2,7 +2,7 @@ import { WeatherForecast } from './WeatherForecast.js';
 import { CurrentWeather } from './CurrentWeather.js';
 import { WeatherDetail } from './WeatherDetail.js';
 import { hourlyData, weeklyData, weatherDetails } from './data.js';
-import { debounce } from './utils.js';
+import { debounce, getIconPath } from './utils.js';
 import { getCitySuggestions } from './geocoding.js';
 import { getForecast } from './forecast.js';
 
@@ -74,7 +74,6 @@ function loadDefaultWeather() {
         });
 }
 
-// Fonction de gestion de la sélection de la ville
 function handleCitySelection(suggestion) {
     console.log(`Ville sélectionnée : ${suggestion.name}`);
     getForecast(suggestion.name)
@@ -90,11 +89,12 @@ function handleCitySelection(suggestion) {
 function updateCurrentWeather(forecast) {
     const currentWeather = new CurrentWeather(
         forecast.address, 
-        forecast.days[0].icon, 
+        getIconPath(forecast.days[0].icon), 
         forecast.days[0].temp, 
         forecast.days[0].conditions
     );
-
+    console.log(currentWeather);
+    
     // Afficher les données dans l'interface utilisateur
     const currentContainer = document.getElementById('current');
     currentContainer.innerHTML = '';

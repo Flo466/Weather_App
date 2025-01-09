@@ -62,6 +62,18 @@ function initAutocomplete() {
     }, 300)); // 300ms de délai avant d'exécuter
 }
 
+function loadDefaultWeather() {
+    const defaultCity = 'Paris'; // Ville par défaut
+    getForecast(defaultCity)
+        .then((forecast) => {
+            console.log(`Données météo par défaut pour ${defaultCity}:`, forecast);
+            updateCurrentWeather(forecast); // Mettre à jour les données avec Paris
+        })
+        .catch((error) => {
+            console.error('Erreur lors de la récupération des données météo par défaut:', error);
+        });
+}
+
 // Fonction de gestion de la sélection de la ville
 function handleCitySelection(suggestion) {
     console.log(`Ville sélectionnée : ${suggestion.name}`);
@@ -99,4 +111,7 @@ document.addEventListener('click', (e) => {
 });
 
 // Initialisation de l’autocomplétion
-window.onload = initAutocomplete;
+window.onload = function () {
+    loadDefaultWeather();
+    initAutocomplete();
+};

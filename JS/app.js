@@ -82,13 +82,13 @@ function updateAll(forecast) {
     const currentWeather = new CurrentWeather(
         forecast.address, 
         getIconPath(forecast.days[0].icon), 
-        forecast.days[0].temp, 
+        Math.round(forecast.days[0].temp), 
         forecast.days[0].conditions
     );
     const hourlyArray = forecast.days[0].hours;
     const dailyArray = forecast.days;
     const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
-    const dailyForecast = new WeatherForecast(limitArraySize(dailyArray, 14), 'daily');
+    const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
     
     // Afficher les données dans l'interface utilisateur
     const currentContainer = document.getElementById('current');

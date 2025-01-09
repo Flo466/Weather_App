@@ -1,4 +1,4 @@
-import { getIconPath } from "./utils.js";
+import { getIconPath, getDayNameFromDateString } from "./utils.js";
 
 export class WeatherForecast {
     constructor(data, type) {
@@ -35,11 +35,11 @@ export class WeatherForecast {
 
             // Heure ou Jour
             const timeOrDayElem = document.createElement('p');
-            timeOrDayElem.textContent = this.type === 'hourly' ? item.datetime : item.datetime;
+            timeOrDayElem.textContent = this.type === 'hourly' ? item.datetime.substring(0, 5) : getDayNameFromDateString(item.datetime);
 
             // Température
             const tempElem = document.createElement('p');
-            tempElem.textContent = `${item.temp}°C`;
+            tempElem.textContent = `${Math.round(item.temp)}°C`;
 
             // Ajouter les éléments au bloc
             itemElem.appendChild(iconElem);

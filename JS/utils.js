@@ -20,3 +20,8 @@ export function limitArraySize(array, maxLength) {
     }
     return array;
 }
+
+export function getDayNameFromDateString(datetime, locale = "fr-FR") {
+    const date = new Date(datetime);
+    return new Intl.DateTimeFormat(locale, { weekday: "long" }).format(date);
+};

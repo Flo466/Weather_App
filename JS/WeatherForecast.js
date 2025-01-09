@@ -1,3 +1,5 @@
+import { getIconPath } from "./utils.js";
+
 export class WeatherForecast {
     constructor(data, type) {
         this.data = data;
@@ -28,16 +30,16 @@ export class WeatherForecast {
             // Icône
             const iconElem = document.createElement('img');
             iconElem.classList.add('weather-icon');
-            iconElem.src = item.icon;
-            iconElem.alt = item.label || item.name;
+            iconElem.src = getIconPath(item.icon);
+            iconElem.alt = item.datetime || item.datetime;
 
             // Heure ou Jour
             const timeOrDayElem = document.createElement('p');
-            timeOrDayElem.textContent = this.type === 'hourly' ? item.label : item.name;
+            timeOrDayElem.textContent = this.type === 'hourly' ? item.datetime : item.datetime;
 
             // Température
             const tempElem = document.createElement('p');
-            tempElem.textContent = `${item.temperature}°C`;
+            tempElem.textContent = `${item.temp}°C`;
 
             // Ajouter les éléments au bloc
             itemElem.appendChild(iconElem);

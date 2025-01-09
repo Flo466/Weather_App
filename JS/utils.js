@@ -12,3 +12,11 @@ export function getIconPath(iconName) {
     const iconPath = `${basePath}${iconName}.svg`;
     return iconPath;
 }
+
+
+export function limitArraySize(array, maxLength) {
+    if (array.length > maxLength) {
+        return array.slice(0, maxLength);
+    }
+    return array;
+}

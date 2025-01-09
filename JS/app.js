@@ -2,7 +2,7 @@ import { WeatherForecast } from './WeatherForecast.js';
 import { CurrentWeather } from './CurrentWeather.js';
 import { WeatherDetail } from './WeatherDetail.js';
 import { hourlyData, weeklyData, weatherDetails } from './data.js';
-import { debounce, getIconPath } from './utils.js';
+import { debounce, getIconPath, limitArraySize } from './utils.js';
 import { getCitySuggestions } from './geocoding.js';
 import { getForecast } from './forecast.js';
 
@@ -14,14 +14,6 @@ weatherDetails.forEach(detail => {
     const card = new WeatherDetail(detail.iconSrc, detail.label, detail.value);
     detailsContainer.appendChild(card.create());
 });
-
-// Créer les cartes avec les données météo
-const hourlyForecast = new WeatherForecast(hourlyData, 'hourly');
-const dailyForecast = new WeatherForecast(weeklyData, 'daily');
-
-// Ajouter les cartes dans le DOM
-document.getElementById('forecast').appendChild(hourlyForecast.create());
-document.getElementById('forecast').appendChild(dailyForecast.create());
 
 // Initialisation de l’autocomplétion avec debounce
 function initAutocomplete() {
@@ -67,7 +59,7 @@ function loadDefaultWeather() {
     getForecast(defaultCity)
         .then((forecast) => {
             console.log(`Données météo par défaut pour ${defaultCity}:`, forecast);
-            updateCurrentWeather(forecast); // Mettre à jour les données avec Paris
+            updateAll(forecast); // Mettre à jour les données avec Paris
         })
         .catch((error) => {
             console.error('Erreur lors de la récupération des données météo par défaut:', error);
@@ -79,26 +71,31 @@ function handleCitySelection(suggestion) {
     getForecast(suggestion.name)
         .then((forecast) => {
             console.log(`Données météo pour ${suggestion.name}:`, forecast);
-            updateCurrentWeather(forecast);
+            updateAll(forecast);
         })
         .catch((error) => {
             console.error('Erreur lors de la récupération des données météo:', error);
         });
 }
 
-function updateCurrentWeather(forecast) {
+function updateAll(forecast) {
     const currentWeather = new CurrentWeather(
         forecast.address, 
         getIconPath(forecast.days[0].icon), 
         forecast.days[0].temp, 
         forecast.days[0].conditions
     );
-    console.log(currentWeather);
+    const hourlyArray = forecast.days[0].hours;
+    const dailyArray = forecast.days;
+    const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
+    const dailyForecast = new WeatherForecast(limitArraySize(dailyArray, 14), 'daily');
     
     // Afficher les données dans l'interface utilisateur
     const currentContainer = document.getElementById('current');
     currentContainer.innerHTML = '';
     currentContainer.appendChild(currentWeather.create());
+    document.getElementById('forecast').appendChild(hourlyForecast.create());
+    document.getElementById('forecast').appendChild(dailyForecast.create());
 }
 
 

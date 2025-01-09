@@ -6,14 +6,6 @@ import { debounce } from './utils.js';
 import { getCitySuggestions } from './geocoding.js';
 import { getForecast } from './forecast.js';
 
-
-const currentWeather = new CurrentWeather(
-    'Paris, France',
-    '../asset/rain.png',
-    28,
-    'Rain'
-);
-
 // Conteneur principal pour les détails météo
 const detailsContainer = document.getElementById('detail');
 
@@ -28,7 +20,6 @@ const hourlyForecast = new WeatherForecast(hourlyData, 'hourly');
 const dailyForecast = new WeatherForecast(weeklyData, 'daily');
 
 // Ajouter les cartes dans le DOM
-document.getElementById('current').appendChild(currentWeather.create());
 document.getElementById('forecast').appendChild(hourlyForecast.create());
 document.getElementById('forecast').appendChild(dailyForecast.create());
 
@@ -73,9 +64,31 @@ function initAutocomplete() {
 
 // Fonction de gestion de la sélection de la ville
 function handleCitySelection(suggestion) {
+    console.log(`Ville sélectionnée : ${suggestion.name}`);
     getForecast(suggestion.name)
-    console.log(`Ville sélectionnée : ${suggestion.name}`); 
+        .then((forecast) => {
+            console.log(`Données météo pour ${suggestion.name}:`, forecast);
+            updateCurrentWeather(forecast);
+        })
+        .catch((error) => {
+            console.error('Erreur lors de la récupération des données météo:', error);
+        });
 }
+
+function updateCurrentWeather(forecast) {
+    const currentWeather = new CurrentWeather(
+        forecast.address, 
+        forecast.days[0].icon, 
+        forecast.days[0].temp, 
+        forecast.days[0].conditions
+    );
+
+    // Afficher les données dans l'interface utilisateur
+    const currentContainer = document.getElementById('current');
+    currentContainer.innerHTML = '';
+    currentContainer.appendChild(currentWeather.create());
+}
+
 
 // Fermer les suggestions lorsqu'on clique en dehors
 document.addEventListener('click', (e) => {

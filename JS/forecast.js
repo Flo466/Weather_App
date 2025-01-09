@@ -5,7 +5,7 @@ export async function getForecast(city) {
     const url = `http://localhost:3001/forecast?city=${encodeURIComponent(city)}`;
     try {
         const forecast = await ajaxRequest({ url, method: 'GET' });
-        console.log('Météo récupérée:', forecast);
+        // console.log('Météo récupérée:', forecast);
         return forecast;
     } catch (error) {
         console.error('Erreur lors de l\'appel API:', error);

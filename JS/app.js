@@ -1,7 +1,7 @@
 import { WeatherForecast } from './WeatherForecast.js';
 import { CurrentWeather } from './CurrentWeather.js';
 import { WeatherDetail } from './WeatherDetail.js';
-import { hourlyData, weeklyData, weatherDetails } from './data.js';
+import { weatherDetails } from './data.js';
 import { debounce, getIconPath, limitArraySize } from './utils.js';
 import { getCitySuggestions } from './geocoding.js';
 import { getForecast } from './forecast.js';
@@ -78,25 +78,36 @@ function handleCitySelection(suggestion) {
         });
 }
 
-function updateAll(forecast) {
+async function updateAll(forecast) {
+    // Créer l'objet CurrentWeather pour la météo actuelle
     const currentWeather = new CurrentWeather(
-        forecast.address, 
-        getIconPath(forecast.days[0].icon), 
-        Math.round(forecast.days[0].temp), 
+        forecast.address,
+        getIconPath(forecast.days[0].icon),
+        Math.round(forecast.days[0].temp),
         forecast.days[0].conditions
     );
-    const hourlyArray = forecast.days[0].hours;
-    const dailyArray = forecast.days;
-    const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
-    const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
-    
-    // Afficher les données dans l'interface utilisateur
+
+    // Afficher la météo actuelle
     const currentContainer = document.getElementById('current');
     currentContainer.innerHTML = '';
     currentContainer.appendChild(currentWeather.create());
-    document.getElementById('forecast').appendChild(hourlyForecast.create());
-    document.getElementById('forecast').appendChild(dailyForecast.create());
+
+    // Simuler un délai avec une promesse
+    await new Promise(resolve => setTimeout(resolve, 400)); // Attendre 500ms
+
+    // Créer et afficher les prévisions horaires
+    const hourlyArray = forecast.days[0].hours;
+    const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
+    const forecastContainer = document.getElementById('forecast');
+    forecastContainer.innerHTML = ''; // Réinitialiser les prévisions
+    forecastContainer.appendChild(hourlyForecast.create());
+
+    // Créer et afficher les prévisions journalières
+    const dailyArray = forecast.days;
+    const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
+    forecastContainer.appendChild(dailyForecast.create());
 }
+
 
 
 // Fermer les suggestions lorsqu'on clique en dehors

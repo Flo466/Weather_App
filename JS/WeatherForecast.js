@@ -35,7 +35,8 @@ export class WeatherForecast {
 
             // Heure ou Jour
             const timeOrDayElem = document.createElement('p');
-            timeOrDayElem.textContent = this.type === 'hourly' ? item.datetime.substring(0, 5) : getDayNameFromDateString(item.datetime);
+            timeOrDayElem.textContent = this.type === 
+            'hourly' ? item.datetime.substring(0, 5) : getDayNameFromDateString(item.datetime);
 
             // Température
             const tempElem = document.createElement('p');

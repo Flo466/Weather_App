@@ -78,11 +78,9 @@ function handleCitySelection(suggestion) {
         });
 }
 
+let isPageLoaded = false; // Variable pour vérifier si la page est déjà chargée
+
 async function updateAll(forecast) {
-    // Afficher le spinner de chargement
-    document.getElementById('loading').style.display = 'block';
-    await new Promise(resolve => setTimeout(resolve, 600)); 
-  
     try {
       // Créer l'objet CurrentWeather pour la météo actuelle
       const currentWeather = new CurrentWeather(
@@ -91,23 +89,30 @@ async function updateAll(forecast) {
         Math.round(forecast.days[0].temp),
         forecast.days[0].conditions
       );
-  
-      // Afficher la météo actuelle
+      
+      await new Promise(resolve => setTimeout(resolve, 700));
+
+      // Afficher la météo actuelle avec animation
       const currentContainer = document.getElementById('current');
       currentContainer.innerHTML = '';
       currentContainer.appendChild(currentWeather.create());
+      currentContainer.classList.add('fade-in'); // Ajouter l'animation
   
+      await new Promise(resolve => setTimeout(resolve, 400));
+
       // Créer et afficher les prévisions horaires
       const hourlyArray = forecast.days[0].hours;
       const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
       const forecastContainer = document.getElementById('forecast');
       forecastContainer.innerHTML = ''; // Réinitialiser les prévisions
       forecastContainer.appendChild(hourlyForecast.create());
+      forecastContainer.classList.add('fade-in'); // Ajouter l'animation
   
       // Créer et afficher les prévisions journalières
       const dailyArray = forecast.days;
       const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
       forecastContainer.appendChild(dailyForecast.create());
+      forecastContainer.classList.add('fade-in'); // Ajouter l'animation
   
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la météo:", error);
@@ -116,6 +121,7 @@ async function updateAll(forecast) {
       document.getElementById('loading').style.display = 'none';
     }
   }
+  
 
 // Fermer les suggestions lorsqu'on clique en dehors
 document.addEventListener('click', (e) => {

@@ -265,3 +265,20 @@ input:focus{
     max-width: 120px;
   }
 }
+
+/* -----------------------------------------------------------------------------------------------*/
+/* ANIMATION */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(70px);
+  animation: fadeIn 4s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

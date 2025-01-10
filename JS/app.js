@@ -79,36 +79,43 @@ function handleCitySelection(suggestion) {
 }
 
 async function updateAll(forecast) {
-    // Créer l'objet CurrentWeather pour la météo actuelle
-    const currentWeather = new CurrentWeather(
+    // Afficher le spinner de chargement
+    document.getElementById('loading').style.display = 'block';
+    await new Promise(resolve => setTimeout(resolve, 600)); 
+  
+    try {
+      // Créer l'objet CurrentWeather pour la météo actuelle
+      const currentWeather = new CurrentWeather(
         forecast.address,
         getIconPath(forecast.days[0].icon),
         Math.round(forecast.days[0].temp),
         forecast.days[0].conditions
-    );
-
-    // Afficher la météo actuelle
-    const currentContainer = document.getElementById('current');
-    currentContainer.innerHTML = '';
-    currentContainer.appendChild(currentWeather.create());
-
-    // Simuler un délai avec une promesse
-    await new Promise(resolve => setTimeout(resolve, 400)); // Attendre 500ms
-
-    // Créer et afficher les prévisions horaires
-    const hourlyArray = forecast.days[0].hours;
-    const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
-    const forecastContainer = document.getElementById('forecast');
-    forecastContainer.innerHTML = ''; // Réinitialiser les prévisions
-    forecastContainer.appendChild(hourlyForecast.create());
-
-    // Créer et afficher les prévisions journalières
-    const dailyArray = forecast.days;
-    const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
-    forecastContainer.appendChild(dailyForecast.create());
-}
-
-
+      );
+  
+      // Afficher la météo actuelle
+      const currentContainer = document.getElementById('current');
+      currentContainer.innerHTML = '';
+      currentContainer.appendChild(currentWeather.create());
+  
+      // Créer et afficher les prévisions horaires
+      const hourlyArray = forecast.days[0].hours;
+      const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
+      const forecastContainer = document.getElementById('forecast');
+      forecastContainer.innerHTML = ''; // Réinitialiser les prévisions
+      forecastContainer.appendChild(hourlyForecast.create());
+  
+      // Créer et afficher les prévisions journalières
+      const dailyArray = forecast.days;
+      const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
+      forecastContainer.appendChild(dailyForecast.create());
+  
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour de la météo:", error);
+    } finally {
+      // Masquer le spinner une fois le contenu chargé
+      document.getElementById('loading').style.display = 'none';
+    }
+  }
 
 // Fermer les suggestions lorsqu'on clique en dehors
 document.addEventListener('click', (e) => {

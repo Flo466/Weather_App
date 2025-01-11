@@ -1,7 +1,7 @@
 import { WeatherForecast } from './WeatherForecast.js';
 import { CurrentWeather } from './CurrentWeather.js';
 import { WeatherDetail } from './WeatherDetail.js';
-import { debounce, getIconPath, limitArraySize } from './utils.js';
+import { debounce, eraseSuggestions, getIconPath, limitArraySize } from './utils.js';
 import { getCitySuggestions } from './geocoding.js';
 import { getForecast } from './forecast.js';
 import { weatherDetails } from './data.js';
@@ -42,7 +42,7 @@ function initAutocomplete() {
         } else {
             suggestionsBox.style.display = 'none';
         }
-    }, 300)); // 300ms de délai avant d'exécuter
+    }, 350)); // 300ms de délai avant d'exécuter
 }
 
 function loadDefaultWeather() {
@@ -103,12 +103,12 @@ function updateForecast(forecast) {
 function updateDetails(forecast) {
 const currentDay = forecast.days[0];
 const data = [
-    `${currentDay.tempmax}°C / ${currentDay.tempmin}°C`, // Max / Min
-    currentDay.sunset,                                   // Coucher du soleil
-    `${currentDay.sunhours} heures`,                    // Ensoleillement
-    currentDay.uvindex,                                  // Index UV
-    `${currentDay.precipminutes} minutes`,              // Temps de pluie
-    `${currentDay.windspeed} km/h (${currentDay.winddir}°)` // Vent
+    `${Math.round(currentDay.tempmax)}°C / ${Math.round(currentDay.tempmin)}°C`,
+    currentDay.sunset.substring(0, 5),
+    `${Math.round(currentDay.feelslike)}°C`,
+    currentDay.uvindex,
+    `${currentDay.humidity} %`,
+    `${currentDay.windspeed} km/h`
 ];
 console.log(data);
 const detailsContainer = document.getElementById('detail');
@@ -131,7 +131,7 @@ async function updateAll(forecast) {
       updateCurrentWeather(forecast);
       await new Promise(resolve => setTimeout(resolve, 500));
       updateForecast(forecast);
-      await new Promise(resolve => setTimeout(resolve, 700));
+      await new Promise(resolve => setTimeout(resolve, 500));
       updateDetails(forecast);
         
     } catch (error) {
@@ -139,15 +139,8 @@ async function updateAll(forecast) {
     }
   }
 
-// Fermer les suggestions lorsqu'on clique en dehors
-document.addEventListener('click', (e) => {
-    const suggestionsBox = document.getElementById('suggestions');
-    if (suggestionsBox && !suggestionsBox.contains(e.target)) {
-        suggestionsBox.style.display = 'none';
-    }
-});
+eraseSuggestions();
 
-// Initialisation de l’autocomplétion
 window.onload = function () {
     loadDefaultWeather();
     initAutocomplete();

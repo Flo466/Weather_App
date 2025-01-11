@@ -13,7 +13,6 @@ export function getIconPath(iconName) {
     return iconPath;
 }
 
-
 export function limitArraySize(array, maxLength) {
     if (array.length > maxLength) {
         return array.slice(0, maxLength);
@@ -24,4 +23,13 @@ export function limitArraySize(array, maxLength) {
 export function getDayNameFromDateString(datetime, locale = "fr-FR") {
     const date = new Date(datetime);
     return new Intl.DateTimeFormat(locale, { weekday: "long" }).format(date);
+};
+
+export function eraseSuggestions() {
+    document.addEventListener('click', (e) => {
+        const suggestionsBox = document.getElementById('suggestions');
+        if (suggestionsBox && !suggestionsBox.contains(e.target)) {
+            suggestionsBox.style.display = 'none';
+        }
+    });
 };

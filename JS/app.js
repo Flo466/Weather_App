@@ -1,19 +1,11 @@
 import { WeatherForecast } from './WeatherForecast.js';
 import { CurrentWeather } from './CurrentWeather.js';
 import { WeatherDetail } from './WeatherDetail.js';
-import { weatherDetails } from './data.js';
 import { debounce, getIconPath, limitArraySize } from './utils.js';
 import { getCitySuggestions } from './geocoding.js';
 import { getForecast } from './forecast.js';
+import { weatherDetails } from './data.js';
 
-// Conteneur principal pour les détails météo
-const detailsContainer = document.getElementById('detail');
-
-// Ajouter chaque carte de détail au conteneur
-weatherDetails.forEach(detail => {
-    const card = new WeatherDetail(detail.iconSrc, detail.label, detail.value);
-    detailsContainer.appendChild(card.create());
-});
 
 // Initialisation de l’autocomplétion avec debounce
 function initAutocomplete() {
@@ -24,7 +16,6 @@ function initAutocomplete() {
         console.error("L'élément #search n'existe pas dans le DOM !");
         return;
     }
-
     input.addEventListener('input', debounce(function () {
         const query = input.value.trim();
         console.log(`Recherche : ${query}`);
@@ -78,50 +69,75 @@ function handleCitySelection(suggestion) {
         });
 }
 
-let isPageLoaded = false; // Variable pour vérifier si la page est déjà chargée
-
-async function updateAll(forecast) {
-    try {
-      // Créer l'objet CurrentWeather pour la météo actuelle
-      const currentWeather = new CurrentWeather(
+function updateCurrentWeather(forecast) {
+    const currentWeather = new CurrentWeather(
         forecast.address,
         getIconPath(forecast.days[0].icon),
         Math.round(forecast.days[0].temp),
         forecast.days[0].conditions
       );
       
-      await new Promise(resolve => setTimeout(resolve, 700));
-
       // Afficher la météo actuelle avec animation
       const currentContainer = document.getElementById('current');
       currentContainer.innerHTML = '';
       currentContainer.appendChild(currentWeather.create());
-      currentContainer.classList.add('fade-in'); // Ajouter l'animation
-  
-      await new Promise(resolve => setTimeout(resolve, 400));
+      currentContainer.classList.add('fade-in-down'); // Ajouter l'animation
+};
 
-      // Créer et afficher les prévisions horaires
-      const hourlyArray = forecast.days[0].hours;
-      const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
-      const forecastContainer = document.getElementById('forecast');
-      forecastContainer.innerHTML = ''; // Réinitialiser les prévisions
-      forecastContainer.appendChild(hourlyForecast.create());
-      forecastContainer.classList.add('fade-in'); // Ajouter l'animation
-  
-      // Créer et afficher les prévisions journalières
-      const dailyArray = forecast.days;
-      const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
-      forecastContainer.appendChild(dailyForecast.create());
-      forecastContainer.classList.add('fade-in'); // Ajouter l'animation
-  
+function updateForecast(forecast) {
+    // Créer et afficher les prévisions horaires
+    const hourlyArray = forecast.days[0].hours;
+    const hourlyForecast = new WeatherForecast(limitArraySize(hourlyArray, 24), 'hourly');
+    const forecastContainer = document.getElementById('forecast');
+    forecastContainer.innerHTML = ''; // Réinitialiser les prévisions
+    forecastContainer.appendChild(hourlyForecast.create());
+    forecastContainer.classList.add('fade-in-up'); // Ajouter l'animation
+
+    // Créer et afficher les prévisions journalières
+    const dailyArray = forecast.days;
+    const dailyForecast = new WeatherForecast(limitArraySize(dailyArray.slice(1), 14), 'daily');
+    forecastContainer.appendChild(dailyForecast.create());
+    forecastContainer.classList.add('fade-in-up'); // Ajouter l'animation
+};
+
+function updateDetails(forecast) {
+const currentDay = forecast.days[0];
+const data = [
+    `${currentDay.tempmax}°C / ${currentDay.tempmin}°C`, // Max / Min
+    currentDay.sunset,                                   // Coucher du soleil
+    `${currentDay.sunhours} heures`,                    // Ensoleillement
+    currentDay.uvindex,                                  // Index UV
+    `${currentDay.precipminutes} minutes`,              // Temps de pluie
+    `${currentDay.windspeed} km/h (${currentDay.winddir}°)` // Vent
+];
+console.log(data);
+const detailsContainer = document.getElementById('detail');
+detailsContainer.innerHTML = '';
+detailsContainer.classList.add('fade-in-up')
+data.forEach((value, index) => {
+    weatherDetails[index].value = value;
+    const card = new WeatherDetail(
+        weatherDetails[index].iconSrc,
+        weatherDetails[index].label,
+        weatherDetails[index].value
+    );
+    detailsContainer.appendChild(card.create());
+});
+
+};
+
+async function updateAll(forecast) {
+    try {
+      updateCurrentWeather(forecast);
+      await new Promise(resolve => setTimeout(resolve, 500));
+      updateForecast(forecast);
+      await new Promise(resolve => setTimeout(resolve, 700));
+      updateDetails(forecast);
+        
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la météo:", error);
-    } finally {
-      // Masquer le spinner une fois le contenu chargé
-      document.getElementById('loading').style.display = 'none';
     }
   }
-  
 
 // Fermer les suggestions lorsqu'on clique en dehors
 document.addEventListener('click', (e) => {

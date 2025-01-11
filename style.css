@@ -269,10 +269,16 @@ input:focus{
 /* -----------------------------------------------------------------------------------------------*/
 /* ANIMATION */
 
-.fade-in {
+.fade-in-down {
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: fadeIn 4s forwards;
+}
+
+.fade-in-up {
   opacity: 0;
   transform: translateY(70px);
-  animation: fadeIn 4s forwards;
+  animation: fadeIn 3s forwards;
 }
 
 @keyframes fadeIn {

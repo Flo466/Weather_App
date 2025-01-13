@@ -281,6 +281,12 @@ input:focus{
   animation: fadeIn 3s forwards;
 }
 
+.fade-in-neutral {
+  opacity: 0;
+  transform: translateY(0px);
+  animation: fadeIn 1s forwards;
+}
+
 @keyframes fadeIn {
   to {
     opacity: 1;

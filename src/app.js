@@ -2,8 +2,8 @@ import { WeatherForecast } from './components/WeatherForecast.js';
 import { CurrentWeather } from './components/CurrentWeather.js';
 import { WeatherDetail } from './components/WeatherDetail.js';
 import { debounce, eraseSuggestions, getIconPath, limitArraySize } from './utils/utils.js';
-import { getCitySuggestions } from './geocoding.js';
-import { getForecast } from './forecast.js';
+import { getCitySuggestions } from './services/geocoding.js';
+import { getForecast } from './services/forecast.js';
 import { weatherDetails } from './utils/data.js';
 
 // Initialize autocomplete functionality for the search bar
@@ -92,7 +92,7 @@ function updateCurrentWeather(forecast) {
     const currentContainer = document.getElementById('current');
     currentContainer.innerHTML = '';
     currentContainer.appendChild(currentWeather.create());
-    currentContainer.classList.add('fade-in-down'); // Add fade-in animation
+    currentContainer.classList.add('fade-in-down');
 }
 
 // Update hourly and daily weather forecast with animations

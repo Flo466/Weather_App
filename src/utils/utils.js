@@ -1,4 +1,3 @@
-// Fonction debounce
 export function debounce(func, delay) {
     let timer;
     return function (...args) {
@@ -8,7 +7,7 @@ export function debounce(func, delay) {
 }
 
 export function getIconPath(iconName) {
-    const basePath = "asset/weather-icons/";
+    const basePath = "assets/weather-icons/";
     const iconPath = `${basePath}${iconName}.svg`;
     return iconPath;
 }

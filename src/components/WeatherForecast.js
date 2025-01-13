@@ -1,4 +1,4 @@
-import { getIconPath, getDayNameFromDateString } from "./utils.js";
+import { getIconPath, getDayNameFromDateString } from "../utils/utils.js";
 
 export class WeatherForecast {
     constructor(data, type) {

@@ -1,6 +1,7 @@
 export function ajaxRequest({ url, method = 'GET', data = null, headers = {} }) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
+        console.log("url :" + url);
         xhr.open(method, url, true);
 
         Object.keys(headers).forEach(key => {
